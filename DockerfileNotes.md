@@ -33,7 +33,6 @@ Set the user or UID for the container created with the image.
 Enable access/linked directory between the container and the host machine. 
 	
 
-FROM java:8-jdk-alpine COPY ./target/app.jar /usr/app/ 
-WORKDIR /usr/app 
-RUN sh -c 'touch app.jar' 
-ENTRYPOINT ["java","-jar”,”app.jar"]
+This Dockerfile has a DEPENDENCY parameter pointing to a directory where we have unpacked the fat jar. From a Maven build:
+
+> $ mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
